@@ -1,3 +1,4 @@
 [submodule "butano"]
 	path = butano
-	url = git@github.com:GValiente/butano.git
+	url = https://github.com/GValiente/butano
+it
