@@ -29,13 +29,13 @@
 #---------------------------------------------------------------------------------------------------------------------
 TARGET      :=  $(notdir $(CURDIR))
 BUILD       :=  build
-LIBBUTANO   :=  butano
+LIBBUTANO   :=  butano/butano
 PYTHON      :=  python
 SOURCES     :=  src
-INCLUDES    :=  include ../common/include
+INCLUDES    :=  include butano/common/include
 DATA        :=
-GRAPHICS    :=  graphics ../common/graphics
-AUDIO       :=  audio ../common/audio
+GRAPHICS    :=  graphics butano/common/graphics
+AUDIO       :=  audio butano/common/audio
 DMGAUDIO    :=  dmg_audio
 ROMTITLE    :=  ROM TITLE
 ROMCODE     :=  SBTP
