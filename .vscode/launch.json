@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "butano",
+            "type": "cppdbg",
+            "request": "launch",
+            "preLaunchTask": "make",
+            "postDebugTask": "stop",
+            "program": "${workspaceFolder}\\${workspaceFolderBasename}.elf",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:/devkitPro/devkitARM/bin/arm-none-eabi-gdb.exe",
+            "miDebuggerServerAddress": "localhost:2345",
+            "setupCommands": [
+                {
+                    "description": "mgba",
+                    "text": "shell start /b \"\" \"C:/Program Files/mGBA/mGBA.exe\" -g ${workspaceFolder}/${workspaceFolderBasename}.gba",
+                    "ignoreFailures": true
+                }
+            ],
+        }
+    ]
+}
