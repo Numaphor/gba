@@ -22,7 +22,7 @@ void world::setBackground()
 
 void world::update()
 {
-    // player.update();
+    player.update();
     grid.update();
 }
 } // namespace dnd

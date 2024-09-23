@@ -26,13 +26,10 @@ bn::fixed_point math::cartToIso(bn::fixed_point pos)
 
     return iso;
 }
-// functions that take the pos + how many tiles to move and return the new pos relative to the grid. the directions are
-// in cartesian coordinates and the position and destionation are in isometric coordinates
 
 bn::fixed_point math::move(bn::fixed_point position, bn::fixed_point direction)
 {
-    bn::fixed_point isometricPosition;
-    isometricPosition = cartToIso(position);
+    bn::fixed_point isometricPosition = cartToIso(position);
     isometricPosition.set_x(isometricPosition.x() + direction.x());
     isometricPosition.set_y(isometricPosition.y() + direction.y());
     bn::fixed_point destination = isoToCart(isometricPosition);

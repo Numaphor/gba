@@ -19,7 +19,7 @@ private:
     math& math_ref; // Add a reference to math
 
 public:
-    grid(dnd::math _math) : highlight(bn::sprite_items::cursor.create_sprite(0, -3)), math_ref(_math) {};
+    grid(dnd::math _math) : highlight(bn::sprite_items::cursor.create_sprite(0, -4)), math_ref(_math) {};
 
     void update()
     {
@@ -48,19 +48,13 @@ public:
         }
         if (bn::keypad::up_pressed())
         {
-            if (highlight.get()->position().y() > 0) // Corrected typo here
-            {
-                highlight.value().set_position(math_ref.move(highlight.get()->position(), bn::point(0, -1)));
-                set();
-            }
+            highlight.value().set_position(math_ref.move(highlight.get()->position(), bn::point(0, -1)));
+            set();
         }
         if (bn::keypad::down_pressed())
         {
-            if (highlight.get()->position().y() < config::WORLD_HEIGHT - 1)
-            {
-                highlight.value().set_position(math_ref.move(highlight.get()->position(), bn::point(0, 1)));
-                set();
-            }
+            highlight.value().set_position(math_ref.move(highlight.get()->position(), bn::point(0, 1)));
+            set();
         }
     }
 };
