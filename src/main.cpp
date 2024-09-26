@@ -1,7 +1,7 @@
-#include "world.h"
-#include "math.h"
 #include "bn_core.h"
 #include "bn_sprite_text_generator.h"
+#include "math.h"
+#include "world.h"
 
 #include "common_variable_8x16_sprite_font.h"
 
