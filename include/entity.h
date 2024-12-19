@@ -18,7 +18,7 @@ namespace dnd
 class entity
 {
 private:
-    bn::point location;
+    bn::fixed_point location;
     bn::random random;
     int animIndex;
     int mapindex;
@@ -26,7 +26,7 @@ private:
     bn::optional<bn::sprite_ptr> spr;
 
 public:
-    entity(bn::point _location, bn::random _random, int _animIndex, int _mapindex)
+    entity(bn::fixed_point _location, bn::random _random, int _animIndex, int _mapindex)
         : location(_location), random(_random), animIndex(_animIndex), mapindex(_mapindex)
     {
     }
@@ -34,7 +34,7 @@ public:
     bn::optional<bn::sprite_animate_action<2>> anim;
 
     // Getters
-    bn::point getLocation() const
+    bn::fixed_point getLocation() const
     {
         return location;
     }
@@ -60,7 +60,7 @@ public:
     }
 
     // Setters
-    void setLocation(bn::point _location)
+    void setLocation(bn::fixed_point _location)
     {
         location = _location;
     }
@@ -89,14 +89,14 @@ public:
 class player : public entity
 {
 public:
-    player(bn::point _location, bn::random _random, math& _math)
+    player(bn::fixed_point _location, bn::random _random, math& _math)
         : entity(_location, _random, 16,
-                 (((_location.x() < 0) ? -_location.x() : _location.x()) * 10 +
-                  ((_location.y() < 0) ? -_location.y() : _location.y())))
+                 int(((_location.x() < 0) ? -_location.x() : _location.x()).right_shift_integer() * 10 +
+                     ((_location.y() < 0) ? -_location.y() : _location.y()).right_shift_integer()))
     {
         setSpr(bn::sprite_items::entity.create_sprite(
-            _math.isoToCart(bn::point(_location.x() - 1, _location.y() - 1)).x(),
-            _math.isoToCart(bn::point(_location.x() - 1, _location.y() - 1)).y()));
+            _math.isoToCart(bn::fixed_point(_location.x() - 1, _location.y() - 1)).x(),
+            _math.isoToCart(bn::fixed_point(_location.x() - 1, _location.y() - 1)).y()));
         getSpr().set_bg_priority(1);
         anim = bn::create_sprite_animate_action_forever(getSpr(), 30, bn::sprite_items::entity.tiles_item(), 0, 1);
     }
@@ -110,7 +110,7 @@ public:
 // class enemy : public entity
 // {
 // public:
-//     enemy(bn::point _location, bn::random _random, math &_math)
+//     enemy(bn::fixed_point _location, bn::random _random, math &_math)
 //         : entity(_location, _random, 40, (((_location.x() < 0) ? -_location.x() : _location.x()) * 10 +
 //         ((_location.y() < 0) ? -_location.y() : _location.y())))
 //     {

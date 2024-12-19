@@ -33,19 +33,19 @@ public:
 
     void move()
     {
-        auto handle_movement = [&](const bn::point& direction) {
+        auto handle_movement = [&](const bn::fixed_point& direction) {
             highlight.value().set_position(math_ref.move(highlight.get()->position(), direction));
             set();
         };
 
         if (bn::keypad::left_pressed())
-            handle_movement(bn::point(-1, 0));
+            handle_movement(bn::fixed_point(-1, 0));
         if (bn::keypad::right_pressed())
-            handle_movement(bn::point(1, 0));
+            handle_movement(bn::fixed_point(1, 0));
         if (bn::keypad::up_pressed())
-            handle_movement(bn::point(0, -1));
+            handle_movement(bn::fixed_point(0, -1));
         if (bn::keypad::down_pressed())
-            handle_movement(bn::point(0, 1));
+            handle_movement(bn::fixed_point(0, 1));
     }
 
     bn::optional<bn::sprite_ptr>& getHighlight()
