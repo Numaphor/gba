@@ -23,7 +23,6 @@ private:
     int animIndex;
     int mapindex;
     bn::vector<bn::sprite_ptr, 32> text_sprites;
-    bn::optional<bn::sprite_ptr> spr;
 
 public:
     entity(bn::fixed_point _location, bn::random _random, int _animIndex, int _mapindex)
@@ -32,6 +31,7 @@ public:
     }
 
     bn::optional<bn::sprite_animate_action<2>> anim;
+    bn::optional<bn::sprite_ptr> spr;
 
     // Getters
     bn::fixed_point getLocation() const
@@ -91,8 +91,8 @@ class player : public entity
 public:
     player(bn::fixed_point _location, bn::random _random, math& _math)
         : entity(_location, _random, 16,
-                 int(((_location.x() < 0) ? -_location.x() : _location.x()).right_shift_integer() * 10 +
-                     ((_location.y() < 0) ? -_location.y() : _location.y()).right_shift_integer()))
+                 ((_location.x() < 0) ? -_location.x() : _location.x()).right_shift_integer() * 10 +
+                     ((_location.y() < 0) ? -_location.y() : _location.y()).right_shift_integer())
     {
         setSpr(bn::sprite_items::entity.create_sprite(
             _math.isoToCart(bn::fixed_point(_location.x() - 1, _location.y() - 1)).x(),
@@ -104,6 +104,7 @@ public:
     void update()
     {
         anim.value().update();
+        spr.value().set_position(getLocation().x(), getLocation().y() - 8);
     }
 };
 

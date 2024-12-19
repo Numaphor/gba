@@ -29,7 +29,7 @@ void world::update()
     bn::fixed_point highlight_loc = _grid.getHighlight().value().position();
 
     BN_LOG("Player Location: ", player_loc.x(), ", ", player_loc.y());
-    BN_LOG("Highlight Location: ", highlight_loc.x(), ", ", highlight_loc.y());
+    BN_LOG("Highlight Location: ", highlight_loc.x(), ", ", highlight_loc.y() + 4);
 
     bn::fixed_point player_iso_x = math_ref.cartToIso(bn::fixed_point(player_loc.x(), bn::fixed_t<12>(0)));
     bn::fixed_point player_iso_y = math_ref.cartToIso(bn::fixed_point(player_loc.y(), bn::fixed_t<12>(0)));
@@ -44,7 +44,9 @@ void world::update()
     if (bn::keypad::b_pressed())
     {
         _grid.getHighlight().value().set_tiles(bn::sprite_items::cursor.tiles_item().create_tiles(0));
-        _player.setLocation(highlight_loc);
+        bn::fixed_point new_location(_grid.getHighlight().value().position().x(),
+                                     _grid.getHighlight().value().position().y() + 4);
+        _player.setLocation(new_location);
     }
 }
 } // namespace dnd
