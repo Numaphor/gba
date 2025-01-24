@@ -106,6 +106,12 @@ public:
         anim.value().update();
         spr.value().set_position(getLocation().x(), getLocation().y() - 8);
     }
+
+    void move(const bn::fixed_point& direction)
+    {
+        bn::fixed_point new_location = getLocation() + direction;
+        setLocation(new_location);
+    }
 };
 
 // class enemy : public entity

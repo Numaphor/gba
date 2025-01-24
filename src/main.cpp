@@ -1,5 +1,6 @@
 #include "bn_core.h"
 #include "bn_sprite_text_generator.h"
+#include "game_engine.h"
 #include "math.h"
 #include "world.h"
 
@@ -8,15 +9,6 @@
 int main()
 {
     bn::core::init();
-
-    bn::sprite_text_generator text = bn::sprite_text_generator(common::variable_8x16_sprite_font);
-
-    dnd::math math;
-    dnd::world world(math);
-
-    while (true)
-    {
-        bn::core::update();
-        world.update();
-    }
+    dnd::GameEngine game_engine;
+    game_engine.run();
 }

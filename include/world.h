@@ -5,7 +5,6 @@
 #include "bn_sprite_animate_actions.h"
 #include "bn_string.h"
 #include "entity.h"
-#include "grid.h"
 #include <bn_regular_bg_ptr.h>
 #include <bn_sprite_ptr.h>
 
@@ -15,7 +14,6 @@ class world
 {
 private:
     bn::regular_bg_ptr bg;
-    grid _grid;     // Renamed to _grid
     player _player; // Renamed to _player
     math& math_ref;
 
